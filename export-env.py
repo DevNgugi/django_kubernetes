@@ -1,6 +1,4 @@
 # a script for exporting the structure of env variables
-#!/usr/bin/env python
-
 import os
 import fnmatch
 
@@ -20,7 +18,7 @@ def get_env_variables_without_values(file_path):
     with open(file_path, 'r') as env_file:
         for line in env_file:
             variable_name = line.split('=')[0].strip()
-            if(variable_name.strip()):
+            if(variable_name.strip() and not variable_name.startswith('#')):
                 variable_name += '='
             env_without_values.append(variable_name.strip())
     
